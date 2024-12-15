@@ -1,0 +1,3 @@
+title : Hidden Secrets in the Code
+
+deksripsi : Dalam tantangan ini, Anda akan menghadapi sebuah skrip Python yang menyembunyikan pesan rahasia menggunakan algoritma enkripsi yang kompleks. Skrip ini menggabungkan beberapa teknik obfuscation, termasuk substitusi karakter, enkripsi Caesar, dan encoding Base64 untuk menciptakan sebuah flag yang tersembunyi.

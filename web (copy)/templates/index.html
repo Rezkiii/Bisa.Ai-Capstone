@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>CTF Challenge</title>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gray-800 text-white p-4 text-center">
+        <h1 class="text-2xl">Welcome to CTF Challenge</h1>
+        <p class="mt-2">Logged in as: <strong>{{ session['username'] }}</strong></p>
+        <a href="{{ url_for('auth.logout') }}" class="text-white hover:underline">Logout</a>
+    </header>
+    <main class="p-4">
+        <!-- Menampilkan pesan flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages mb-4">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}" id="alert-{{ loop.index }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Kotak Tantangan -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Challenge Cryptography -->
+            <div class="challenge-card bg-white rounded-lg shadow-md p-4">
+                <h2 class="text-lg font-bold">Cryptography 1</h2>
+                <p class="text-sm text-gray-600">Level: Easy</p>
+                <button class="open-modal bg-blue-500 text-white px-4 py-2 mt-4 rounded">Open Challenge</button>
+            </div>
+
+            <!-- Challenge Number -->
+            <div class="challenge-card bg-white rounded-lg shadow-md p-4">
+                <h2 class="text-lg font-bold">Number</h2>
+                <p class="text-sm text-gray-600">Level: Easy</p>
+                <button class="open-modal-number bg-green-500 text-white px-4 py-2 mt-4 rounded">Open Challenge</button>
+            </div>
+        </div>
+
+        <!-- Modal Cryptography -->
+        <div class="modal-overlay" id="modal-cryptography">
+            <div class="modal-content">
+                <h2 class="text-xl font-bold mb-4">Cryptography 1</h2>
+                <p class="mb-4">Dua Enkripsi Dasar</p>
+
+                <!-- Link untuk mengunduh file -->
+                <a href="{{ url_for('static', filename='flag/cryptograph/chall.py') }}" 
+                   download="chall.py" 
+                   class="bg-green-500 text-white px-4 py-2 rounded inline-block mb-4">Download File</a>
+
+                <!-- Form untuk submit flag -->
+                <form method="POST" action="{{ url_for('cryptography1') }}">
+                    <input type="text" name="flag" placeholder="Masukkan flag" 
+                           class="border px-3 py-2 rounded w-full mb-4">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+                </form>
+                <button class="close-modal text-red-500 hover:underline mt-2">Tutup</button>
+            </div>
+        </div>
+
+        <!-- Modal Number -->
+        <div class="modal-overlay" id="modal-number">
+            <div class="modal-content">
+                <h2 class="text-xl font-bold mb-4">Number</h2>
+                <p class="mb-4">Terdapat sebuah rahasia dibalik angka</p>
+
+                <!-- Link untuk mengunduh file -->
+                <a href="{{ url_for('static', filename='flag/number/Secret.png') }}" 
+                   download="Secret.png" 
+                   class="bg-green-500 text-white px-4 py-2 rounded inline-block mb-4">Download File</a>
+
+                <!-- Form untuk submit flag -->
+                <form method="POST" action="{{ url_for('number') }}">
+                    <input type="text" name="flag" placeholder="Masukkan flag" 
+                           class="border px-3 py-2 rounded w-full mb-4">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+                </form>
+                <button class="close-modal text-red-500 hover:underline mt-2">Tutup</button>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-800 text-white text-center p-4">
+        <p>&copy; 2024 CTF Organizer</p>
+    </footer>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
