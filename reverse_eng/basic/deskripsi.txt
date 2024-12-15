@@ -1,6 +1,0 @@
-Title : XOR Your Way to Victory
-
-deskripsi : 
-Anda akan menghadapi sebuah executable yang menyimpan rahasia dalam bentuk flag yang tersembunyi, namun tidak seperti yang Anda bayangkan.
-
-Program ini menggunakan teknik obfuscation yang tampaknya sederhana namun menyimpan lapisan misteri. Apakah Anda cukup cerdas untuk membongkar teka-teki ini?
